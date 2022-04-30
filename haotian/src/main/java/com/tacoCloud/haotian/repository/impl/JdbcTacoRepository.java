@@ -18,6 +18,10 @@ import java.sql.Types;
 import java.util.Arrays;
 import java.util.Date;
 
+public class JdbcTacoRepository {
+
+}
+/*
 @Repository
 public class JdbcTacoRepository implements TacoRepository {
     private JdbcTemplate jdbc;
@@ -53,3 +57,4 @@ public class JdbcTacoRepository implements TacoRepository {
         jdbc.update(sql, tacoId, ingredient.getId());
     }
 }
+*/

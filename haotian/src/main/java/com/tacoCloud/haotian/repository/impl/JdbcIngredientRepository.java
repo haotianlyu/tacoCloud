@@ -13,6 +13,11 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+
+public class JdbcIngredientRepository {
+
+}
+/*
 @Repository
 public class JdbcIngredientRepository implements IngredientRepository {
 
@@ -60,3 +65,4 @@ public class JdbcIngredientRepository implements IngredientRepository {
                 Type.valueOf(res.getString("type")));
     }
 }
+*/

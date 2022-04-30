@@ -14,6 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+public class JdbcOrderRepository {
+
+}
+/*
 @Repository
 public class JdbcOrderRepository implements OrderRepository {
     private SimpleJdbcInsert orderInserter;
@@ -55,3 +59,4 @@ public class JdbcOrderRepository implements OrderRepository {
         orderTacoInserter.execute(values);
     }
 }
+*/

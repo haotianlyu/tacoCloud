@@ -1,12 +1,10 @@
 package com.tacoCloud.haotian.repository;
 
 import com.tacoCloud.haotian.models.Ingredient;
+import org.springframework.data.repository.CrudRepository;
 
-public interface IngredientRepository {
-    Iterable<Ingredient> findAll();
+import java.util.Optional;
 
-    Ingredient findById(String id);
-
-    Ingredient save(Ingredient ingredient);
+public interface IngredientRepository extends CrudRepository<Ingredient, String> {
 
 }
