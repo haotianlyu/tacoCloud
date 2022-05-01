@@ -1,8 +1,12 @@
 package com.tacoCloud.haotian.controllers;
 
 import com.tacoCloud.haotian.models.Order;
+import com.tacoCloud.haotian.models.User;
 import com.tacoCloud.haotian.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -23,9 +27,21 @@ public class OrderController {
     }
 
     @GetMapping("/current")
-    public String orderForm(Model model) {
-        if (!model.containsAttribute("order")) {
-            model.addAttribute("order", new Order());
+    public String orderForm(@AuthenticationPrincipal User user, @ModelAttribute Order order) {
+        if (order.getName() == null) {
+            order.setName(user.getFullname());
+        }
+        if (order.getStreet() == null) {
+            order.setStreet(user.getStreet());
+        }
+        if (order.getCity() == null) {
+            order.setCity(user.getCity());
+        }
+        if (order.getState() == null) {
+            order.setState(user.getState());
+        }
+        if (order.getZip() == null) {
+            order.setZip(user.getZip());
         }
         return "orderForm";
     }
@@ -35,9 +51,11 @@ public class OrderController {
         if(errors.hasErrors()) {
             return "orderForm";
         }
-
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) authentication.getPrincipal();
+        order.setUser(user);
         orderRepository.save(order);
         sessionStatus.setComplete();
-        return "redirect:/orders/current";
+        return "redirect:/";
     }
 }
